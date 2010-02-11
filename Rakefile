@@ -5,13 +5,12 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "stupid_formatter"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
-    gem.email = ""christoph"
+    gem.summary = %Q{A stupid formatter for piping text through markup processors}
+    gem.description = %Q{With stupid_formatter you can pipe your blog post through erb and markdown in a chain}
+    gem.email = "christoph at olszowka dot de"
     gem.homepage = "http://github.com/colszowka/stupid_formatter"
-    gem.authors = [""Christoph"]
+    gem.authors = ["Christoph Olszowka"]
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
-    gem.add_development_dependency "cucumber", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
@@ -40,17 +39,6 @@ rescue LoadError
 end
 
 task :test => :check_dependencies
-
-begin
-  require 'cucumber/rake/task'
-  Cucumber::Rake::Task.new(:features)
-
-  task :features => :check_dependencies
-rescue LoadError
-  task :features do
-    abort "Cucumber is not available. In order to run features, you must: sudo gem install cucumber"
-  end
-end
 
 task :default => :test
 
