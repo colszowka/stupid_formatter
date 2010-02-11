@@ -1,6 +1,22 @@
 = StupidFormatter
 
-Description goes here.
+This is a super-stupid gem for formatting text in a chain. You can change the chain by doing this:
+
+  StupidFormatter.chain = [StupidFormatter::ErbWithCoderay, StupidFormatter::RDiscount]
+
+Then, pass in your Markdown-markedup, erb-riddled string to StupidFormatter.result and you'll
+see results.
+
+This is so completely alpha, you have no idea!
+
+== Custom formatters
+
+You can define your own formatters and by conforming to the public api, which is:
+
+* inherit from StupidFormatter::AbstractFormatter
+* make a result instance method that does not take any arguments
+* use the local attribute 'input' to do whatever you want with the text, and return it
+
 
 == Note on Patches/Pull Requests
  
