@@ -58,17 +58,19 @@ module StupidFormatter
     end
   end
   
-  # Actually, this might get converted into a module that can optionally be mixed into the formatter
-  class ErbWithCoderay < Erb
-    def highlight(language=:ruby)
-      code = capture { yield }
-      @output_buffer << CodeRay.scan(code, language).div(:css => :class)
-    end
-  end
-  
   class RDiscount < AbstractFormatter
     def result
       Markdown.new(input).to_html
     end
   end
+  
+  module CoderayHelper
+    def highlight(language=:ruby)
+      code = capture { yield }
+      @output_buffer << CodeRay.scan(code, language).div(:css => :class)
+    end
+  end
 end
+
+# Add coderay helper by default
+StupidFormatter::Erb.send :include, StupidFormatter::CoderayHelper

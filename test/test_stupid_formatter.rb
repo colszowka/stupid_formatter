@@ -1,13 +1,13 @@
 require 'helper'
 
 class TestStupidFormatter < Test::Unit::TestCase
-  context "After configuring the StupidFormatter.chain to [StupidFormatter::ErbWithCoderay, StupidFormatter::RDiscount]" do
+  context "After configuring the StupidFormatter.chain to [StupidFormatter::Erb, StupidFormatter::RDiscount]" do
     setup do
-      StupidFormatter.chain = [StupidFormatter::ErbWithCoderay, StupidFormatter::RDiscount]
+      StupidFormatter.chain = [StupidFormatter::Erb, StupidFormatter::RDiscount]
     end
     
-    should "return StupidFormatter::ErbWithCoderay for the first chain item" do
-      assert_equal StupidFormatter::ErbWithCoderay, StupidFormatter.chain[0]
+    should "return StupidFormatter::Erb for the first chain item" do
+      assert_equal StupidFormatter::Erb, StupidFormatter.chain[0]
     end
     
     should "return StupidFormatter::RDiscount for the last chain item" do

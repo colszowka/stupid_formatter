@@ -2,10 +2,10 @@
 
 This is a super-stupid gem for formatting text in a chain. You can change the chain by doing this:
 
-  StupidFormatter.chain = [StupidFormatter::ErbWithCoderay, StupidFormatter::RDiscount]
+  StupidFormatter.chain = [StupidFormatter::Erb, StupidFormatter::RDiscount]
 
 Then, pass in your Markdown-markedup, erb-riddled string to StupidFormatter.result and you'll
-see results.
+see results. A coderay helper is included for erb, see test/fixtures/erb_coderay_markdown_example.txt
 
 This is so completely alpha, you have no idea!
 

@@ -22,9 +22,9 @@ puts "foo bar baz"
 <% end %>'
     end
     
-    context "after piping it through a new erb with coderay formatter instance" do
+    context "after piping it through a new erb instance" do
       setup do
-        @result = StupidFormatter::ErbWithCoderay.new(@text).result
+        @result = StupidFormatter::Erb.new(@text).result
       end
       
       should('match <div class="CodeRay">') { assert_match /\<div class="CodeRay"\>/, @result.strip.chomp }

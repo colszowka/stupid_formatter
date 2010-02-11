@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "lib/stupid_formatter.rb",
+     "stupid_formatter.gemspec",
      "test/fixtures/erb_coderay_markdown_example.txt",
      "test/fixtures/erb_coderay_markdown_expectation.txt",
      "test/helper.rb",
