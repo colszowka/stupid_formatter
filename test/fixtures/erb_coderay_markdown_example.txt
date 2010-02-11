@@ -1,0 +1,11 @@
+# A heading
+
+<p>A basic paragraph</p>
+
+<% if 1 == 2 %>
+  Some plain ERB conditional
+<% end %>
+
+<% highlight do %>
+  puts "foo bar baz"
+<% end %>
