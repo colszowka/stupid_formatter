@@ -86,6 +86,8 @@ The language defaults to :ruby, but you can pass in any CodeRay-language to the 
   
 The highlighting is configured to use CSS instead of in-place colors, so you might want to add a 
 decent (http://railscasts.com/stylesheets/coderay.css) coderay css file into your HTML.
+
+Thanks Ryan for making that great CodeRay CSS and giving it away (http://railscasts.com/episodes/46-catch-all-route)!
   
 === Making your own helpers
 
