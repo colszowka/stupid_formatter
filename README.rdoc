@@ -1,23 +1,109 @@
 = StupidFormatter
 
-This is a super-stupid gem for formatting text in a chain. You can change the chain by doing this:
+StupidFormatter let's you pipe text through processors in a chain by abstracting the actual implementation
+details of each processor into a unified API.
+
+Say you want to format some markdown-formatted text with RDiscount and also include some ERb processing, 
+you could configure the chain somewhere at the beginning of your app like so:
 
   StupidFormatter.chain = [StupidFormatter::Erb, StupidFormatter::RDiscount]
+  
+Then, pass in your Markdown-marked-up, ERb-riddled string to <code>StupidFormatter.result</code> or
+just call <code>string.formatted</code> and you'll see results. 
 
-Then, pass in your Markdown-markedup, erb-riddled string to StupidFormatter.result and you'll
-see results. A coderay helper is included for erb, see test/fixtures/erb_coderay_markdown_example.txt
+The ERb, RDiscount chain mentioned above is actually the default, so if you want to stick with that,
+just skip that chain config step (yes, it is a stupid example).
 
-This is so completely alpha, you have no idea!
+Formatters are processed in the order they are given in the Array, so ERb comes first, then RDiscount
+in this example.
 
+To install, do:
+
+  sudo gem install stupid_formatter
+  
+This is so completely alpha, you have no idea! Don't expect beautiful code or RDoc.
+
+== Using the formatters directly
+
+Of course, you can access the formatters directly as well. To format a string with RDiscount, do:
+  
+  StupidFormatter::RDiscount.new("# some markdown").result
+  
 == Custom formatters
 
-You can define your own formatters and by conforming to the public api, which is:
+You can define your own formatters very easily by conforming to the public API, which is:
 
 * inherit from StupidFormatter::AbstractFormatter
 * make a result instance method that does not take any arguments
 * use the local attribute 'input' to do whatever you want with the text, and return it
 
+=== Example custom formatter
 
+In our example, let's create a formatter that will reverse the text.
+
+  class StupidFormatter::WrittenInReverse < StupidFormatter::AbstractFormatter
+    def result
+      input.reverse
+    end
+  end
+  
+After adding that to the chain with
+
+  StupidFormatter.chain << StupidFormatter::WrittenInReverse
+  
+Your text will be reversed when calling <code>"some string".formatted</code>
+
+== ERb Helpers
+
+=== Capturing blocks with ERb
+
+The ERb-formatter offers a capture-helper, which allows you to capture the content of a block into
+a variable like so:
+
+  <% @foo = capture do %>
+    Bar
+  <% end %>
+  Foo<%= @foo %>
+  
+The above example will render into "FooBar". This functionality is used in the Coderay helper, which
+is automatically included in the ERb formatter, see next section.
+
+=== Syntax highlighting with Coderay
+
+With the CoderayHelper that gets included into the ERb formatter automatically, you can syntax-highlighting
+very easily:
+  
+  <% highlight do %>
+    puts 'Your Awesome Ruby(tm) here!'
+  <% end %>
+  
+The language defaults to :ruby, but you can pass in any CodeRay-language to the highlight method:
+
+  <% highlight :javascript do %>
+    var foo = 'bar';
+  <% end %>
+  
+=== Making your own helpers
+
+Let's make a helper that reverses the text you gave in the block, like so:
+
+  <% written_in_reverse do %>
+    anna
+  <% end %>
+  
+Just create a module that uses the capture helper and appends the result to the @output_buffer and include it
+in the ERb helper, like so:
+
+  module WrittenInReverse
+    def written_in_reverse
+      text = capture { yield }
+      @output_buffer << text.reverse
+    end
+  end
+  StupidFormatter::ERb.send :include, WrittenInReverse
+
+This will print 'anna' in your ERb. Easy, right?
+  
 == Note on Patches/Pull Requests
  
 * Fork the project.

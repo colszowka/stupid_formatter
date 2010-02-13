@@ -2,19 +2,36 @@ require 'rdiscount'
 require 'erb'
 require 'coderay'
 
+class String
+  #
+  # Pipes this string through the StupidFormatter and it's configured chain.
+  # The same as StupidFormatter.result(some_string)
+  #
+  def formatted
+    StupidFormatter.result(self)
+  end
+end
+
 module StupidFormatter
-  
-  # Make the formatter chain configurable.
   class << self
+    #
+    # Returns the current processing chain. Defaults to [StupidFormatter::Erb, StupidFormatter::RDiscount]
+    #
     def chain
-      @chain ||= [StupidFormatter::RDiscount]
+      @chain ||= [StupidFormatter::Erb, StupidFormatter::RDiscount]
     end
     
+    #
+    # Make the formatter chain configurable. Pass in an Array of Formatters in the order
+    # you want them processed in.
+    #
     def chain=(chain)
       @chain = chain
     end
     
+    #
     # Will put the input string through all formatters in the chain
+    #
     def result(input)
       output = input.clone
       chain.each do |formatter|
@@ -24,6 +41,9 @@ module StupidFormatter
     end
   end
   
+  #
+  # Base class for formatters, providing the basic API.
+  #
   class AbstractFormatter
     attr_reader :input
     

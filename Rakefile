@@ -6,13 +6,13 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "stupid_formatter"
     gem.summary = %Q{A stupid formatter for piping text through markup processors}
-    gem.description = %Q{With stupid_formatter you can pipe your blog post through erb and markdown in a chain}
+    gem.description = %Q{A stupid formatter for piping text through markup processors with a unified API}
     gem.email = "christoph at olszowka dot de"
     gem.homepage = "http://github.com/colszowka/stupid_formatter"
     gem.authors = ["Christoph Olszowka"]
     gem.add_dependency "rdiscount", ">= 1.5.0"
     gem.add_dependency "coderay", ">= 0.9.0"
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
+    gem.add_development_dependency "shoulda", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
