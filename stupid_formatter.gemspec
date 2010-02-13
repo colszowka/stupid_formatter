@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{stupid_formatter}
-  s.version = "0.1.1"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Christoph Olszowka"]
-  s.date = %q{2010-02-11}
-  s.description = %q{With stupid_formatter you can pipe your blog post through erb and markdown in a chain}
+  s.date = %q{2010-02-13}
+  s.description = %q{A stupid formatter for piping text through markup processors with a unified API}
   s.email = %q{christoph at olszowka dot de}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -51,16 +51,16 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<rdiscount>, [">= 1.5.0"])
       s.add_runtime_dependency(%q<coderay>, [">= 0.9.0"])
-      s.add_development_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+      s.add_development_dependency(%q<shoulda>, [">= 0"])
     else
       s.add_dependency(%q<rdiscount>, [">= 1.5.0"])
       s.add_dependency(%q<coderay>, [">= 0.9.0"])
-      s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+      s.add_dependency(%q<shoulda>, [">= 0"])
     end
   else
     s.add_dependency(%q<rdiscount>, [">= 1.5.0"])
     s.add_dependency(%q<coderay>, [">= 0.9.0"])
-    s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+    s.add_dependency(%q<shoulda>, [">= 0"])
   end
 end
 
