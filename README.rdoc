@@ -1,10 +1,11 @@
 = StupidFormatter
 
 StupidFormatter let's you pipe text through processors in a chain by abstracting the actual implementation
-details of each processor into a unified API.
+details of each processor into a unified API. By default, it can do ERb, Markdown (via RDiscount) and
+syntax-highlight with CodeRay.
 
-Say you want to format some markdown-formatted text with RDiscount and also include some ERb processing, 
-you could configure the chain somewhere at the beginning of your app like so:
+Say you want to format some markdown-formatted text with RDiscount and also include some ERb processing
+with CodeRay syntax highlighting, you could configure the chain somewhere at the beginning of your app like so:
 
   StupidFormatter.chain = [StupidFormatter::Erb, StupidFormatter::RDiscount]
   
@@ -70,7 +71,7 @@ is automatically included in the ERb formatter, see next section.
 
 === Syntax highlighting with Coderay
 
-With the CoderayHelper that gets included into the ERb formatter automatically, you can syntax-highlighting
+With the CoderayHelper that gets included into the ERb formatter automatically, you can get syntax-highlighting
 very easily:
   
   <% highlight do %>
@@ -82,6 +83,9 @@ The language defaults to :ruby, but you can pass in any CodeRay-language to the 
   <% highlight :javascript do %>
     var foo = 'bar';
   <% end %>
+  
+The highlighting is configured to use CSS instead of in-place colors, so you might want to add a 
+decent (http://railscasts.com/stylesheets/coderay.css) coderay css file into your HTML.
   
 === Making your own helpers
 
