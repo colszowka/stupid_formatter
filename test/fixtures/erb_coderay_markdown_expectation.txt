@@ -6,7 +6,7 @@
 
 
 <div class="CodeRay">
-  <div class="code"><pre>  puts <span class="s"><span class="dl">&quot;</span><span class="k">foo bar baz</span><span class="dl">&quot;</span></span>
+  <div class="code"><pre>  puts <span class="string"><span class="delimiter">&quot;</span><span class="content">foo bar baz</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
